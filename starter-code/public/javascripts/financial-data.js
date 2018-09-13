@@ -1,7 +1,20 @@
+let start = "2016-09-12"
+let end = "2018-09-12"
+
+document.getElementById('start').onchange = function(e) {
+	console.log(e);
+	start = e.target.value;
+
+}
+document.getElementById('end').onchange = function(e) {
+	console.log(e);
+	end = e.target.value;
+}
+
 console.log("hello client side")
-axios.get("http://api.coindesk.com/v1/bpi/historical/close.json")
+axios.get(`http://api.coindesk.com/v1/bpi/historical/close.json?start=${start}&end=${end}`)
 .then(response	 => {
-	console.log(typeof Object.keys(response.data.bpi));
+	console.log(Object.keys(response.data.bpi));
 	var config = {
 		type: 'line',
 		data: {
