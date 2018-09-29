@@ -8,13 +8,30 @@
   
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <% if (user) { %>
+    	You are logged in
+    <% } else { %>
+    	<button> Login </button>
+    <% } %>
     <canvas id="canvas"></canvas>
     <input type="date" id="start">
     <input type="date" id="end">
-  
+  	<button id="my_btn" >Valider</button>
   </body>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   <script src="/javascripts/financial-data.js" charset="utf-8"></script>
+
+  <script type="text/javascript">
+  var button = document.getElementById("my_btn")
+  button.onclick = function(){
+  	axios.post('/distance_matrix', {orgin: 50, destination: 60}).then((response)=>{
+  		console.log(response)
+  	})  	
+  }
+	axios.post('/distance_matrix', {orgin: 50, destination: 60}).then((response)=>{
+		console.log(response)
+	})
+  </script>
 </html>
